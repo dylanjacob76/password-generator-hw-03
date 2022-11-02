@@ -23,10 +23,15 @@ function generatePassword() {
   var length = prompt("How long would you like your password?");
 
   //verify user entered length meets password criteria
+  if (!length) {
+    return;
+  }
+
   if (length < 8 || length > 128) {
     alert("Please enter a password length between 8 and 128 characters...");
-    // generatePassword();
-  }
+    generatePassword();
+  } 
+
 
 
   //lowercase letter confirm
@@ -64,7 +69,13 @@ function generatePassword() {
   //all of the symbols are joined within one string
   generatedPassword = generatedPassword.join("");
 
+  //verifies if someone enters no characters
+  if (generatedPassword.length === 0) {
+    alert("You must provide at least on type of character.");
+    generatePassword();
+  }
   
+  //generates random password based on the length prompt and pushes it to the result variable. Then we return result which displays it in the text area.
   var result = "";
   
   for (let i = 0; i < length; i++) {
